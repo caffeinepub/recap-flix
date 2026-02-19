@@ -1,15 +1,20 @@
 {
-  "frontend/src/App.tsx": "Main application component that sets up TanStack Router with routes for home, movie detail, and my list pages, wrapped in ThemeProvider with forced dark mode.",
-  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for all backend operations including searching movies, fetching individual movies, managing user's list, and seeding sample data.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, wrapped in ErrorBoundary and ThemeProvider with loading suspense fallback.",
+  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for all backend operations including getAllMovies, searchMovies, getMovie, list management, and movie addition with comprehensive error handling and console logging.",
   "frontend/src/hooks/useMyList.ts": "Custom hook that provides convenient methods for managing the user's movie list including checking if a movie is in the list and toggling list membership.",
   "frontend/src/components/Navbar.tsx": "Fixed navigation bar with Netflix-style design featuring logo, navigation links, search button, and mobile hamburger menu with scroll-based background transition.",
   "frontend/src/components/SearchModal.tsx": "Modal dialog for searching movies with real-time filtering, displaying results in a grid layout with poster thumbnails.",
   "frontend/src/components/HeroSection.tsx": "Large hero banner component displaying featured movie with backdrop image, title, metadata, and call-to-action buttons matching Netflix's hero design.",
   "frontend/src/components/MovieRow.tsx": "Horizontal scrollable row of movie cards with category title and arrow navigation buttons for browsing content by genre.",
   "frontend/src/components/MovieCard.tsx": "Individual movie card component with poster image, hover effects, and add-to-list functionality displayed on hover.",
-  "frontend/src/pages/HomePage.tsx": "Main landing page composing navbar, hero section, and multiple movie rows organized by genre, with automatic sample data seeding on first load.",
+  "frontend/src/pages/HomePage.tsx": "Main landing page that fetches all movies using useGetAllMovies, seeds sample data on first load, displays loading skeletons during initialization, and organizes movies by genre with hero section and footer.",
   "frontend/src/pages/MovieDetailPage.tsx": "Full movie detail page displaying backdrop image, metadata, and complete recap script in readable typography with back navigation and list management.",
   "frontend/src/pages/MyListPage.tsx": "Dedicated page for viewing user's saved movies in a grid layout with remove functionality and empty state handling.",
   "frontend/src/index.css": "Global styles with Netflix-inspired dark color palette using OKLCH color system, custom scrollbar hiding utilities, and typography settings.",
-  "frontend/tailwind.config.js": "Tailwind configuration extended with Netflix-specific color tokens, custom shadows, and design system tokens for consistent theming."
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Netflix-specific color tokens, custom shadows, and design system tokens for consistent theming.",
+  "frontend/src/components/ErrorBoundary.tsx": "React error boundary component that catches JavaScript errors in child components and displays a user-friendly error message with reload button and error details.",
+  "frontend/src/components/HeroSkeleton.tsx": "Skeleton loading component for the hero section displaying animated placeholder elements matching the hero layout with gradient overlays.",
+  "frontend/src/components/MovieRowSkeleton.tsx": "Skeleton loading component for movie rows displaying animated placeholder cards in horizontal layout.",
+  "frontend/src/main.tsx": "Application entry point that initializes React root with QueryClient, InternetIdentityProvider, and comprehensive console logging for debugging initialization flow.",
+  "frontend/src/hooks/useActor.ts": "Hook that initializes backend actor with authentication support, error handling, fallback to anonymous actor, and query invalidation on actor changes."
 }

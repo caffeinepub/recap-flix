@@ -25,11 +25,11 @@ export interface _SERVICE {
     undefined
   >,
   'addToList' : ActorMethod<[string], undefined>,
+  'getAllMovies' : ActorMethod<[], Array<Movie>>,
   'getList' : ActorMethod<[], Array<Movie>>,
   'getMovie' : ActorMethod<[string], Movie>,
   'removeFromList' : ActorMethod<[string], undefined>,
   'searchMovies' : ActorMethod<[string], Array<Movie>>,
-  'seedData' : ActorMethod<[], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

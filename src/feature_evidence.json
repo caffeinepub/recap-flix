@@ -2,10 +2,30 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-homepage-with-a-netflix-inspired-hero-section-featuring-a-prominent-movie-recap-with-title-description-and-call-to-action-button",
-      "featureTitle": "Create a homepage with a Netflix-inspired hero section featuring a prominent movie recap with title, description, and call-to-action button",
+      "featureId": "feature-add-loading-states-and-error-boundaries-to-the-root-app-component-to-catch-and-display-rendering-errors-instead-of-showing-a-blank-screen",
+      "featureTitle": "Add loading states and error boundaries to the root App component to catch and display rendering errors instead of showing a blank screen",
       "files": [
         "frontend/src/App.tsx",
+        "frontend/src/components/ErrorBoundary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-fallback-loading-states-to-homepage-component-that-display-a-skeleton-ui-while-movie-data-is-being-fetched-from-the-backend",
+      "featureTitle": "Add fallback loading states to HomePage component that display a skeleton UI while movie data is being fetched from the backend",
+      "files": [
+        "frontend/src/components/HeroSkeleton.tsx",
+        "frontend/src/components/MovieRowSkeleton.tsx",
         "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
@@ -16,16 +36,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
+        "REQ-12"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-horizontal-scrollable-rows-of-movie-cards-organized-by-categories-e-g-trending-recaps-action-movies-drama-comedy",
-      "featureTitle": "Implement horizontal scrollable rows of movie cards organized by categories (e.g., 'Trending Recaps', 'Action Movies', 'Drama', 'Comedy')",
+      "featureId": "feature-ensure-the-homepage-component-properly-handles-the-case-when-no-movies-exist-by-displaying-the-hero-section-with-the-first-seeded-movie-immediately-after-seeding-completes",
+      "featureTitle": "Ensure the HomePage component properly handles the case when no movies exist by displaying the hero section with the first seeded movie immediately after seeding completes",
       "files": [
-        "frontend/src/components/MovieCard.tsx",
-        "frontend/src/components/MovieRow.tsx"
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -35,15 +54,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-2"
+        "REQ-13"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-a-top-navigation-bar-with-logo-browse-menu-search-icon-and-user-profile-section-matching-netflix-s-navigation-design",
-      "featureTitle": "Create a top navigation bar with logo, browse menu, search icon, and user profile section matching Netflix's navigation design",
+      "featureId": "feature-add-comprehensive-error-handling-to-all-react-query-hooks-usequeries-ts-to-log-errors-to-console-and-provide-fallback-empty-states-instead-of-failing-silently",
+      "featureTitle": "Add comprehensive error handling to all React Query hooks (useQueries.ts) to log errors to console and provide fallback empty states instead of failing silently",
       "files": [
-        "frontend/src/components/Navbar.tsx"
+        "frontend/src/hooks/useQueries.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -53,15 +72,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-3"
+        "REQ-14"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-build-a-movie-detail-page-that-displays-the-full-recap-script-in-a-readable-format-with-movie-metadata-title-genre-year-duration",
-      "featureTitle": "Build a movie detail page that displays the full recap script in a readable format with movie metadata (title, genre, year, duration)",
+      "featureId": "feature-add-console-logging-to-the-main-tsx-entry-point-and-homepage-component-to-track-application-initialization-flow-and-identify-where-rendering-might-be-failing",
+      "featureTitle": "Add console logging to the main.tsx entry point and HomePage component to track application initialization flow and identify where rendering might be failing",
       "files": [
-        "frontend/src/pages/MovieDetailPage.tsx"
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -71,87 +90,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-search-functionality-that-filters-movies-by-title-and-displays-results-in-a-grid-layout-similar-to-netflix-search-results",
-      "featureTitle": "Implement search functionality that filters movies by title and displays results in a grid layout similar to Netflix search results",
-      "files": [
-        "frontend/src/components/Navbar.tsx",
-        "frontend/src/components/SearchModal.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-my-list-feature-allowing-users-to-save-movie-recaps-for-later-reading-with-persistent-storage",
-      "featureTitle": "Add a 'My List' feature allowing users to save movie recaps for later reading with persistent storage",
-      "files": [
-        "frontend/src/components/MovieCard.tsx",
-        "frontend/src/hooks/useMyList.ts",
-        "frontend/src/pages/MovieDetailPage.tsx",
-        "frontend/src/pages/MyListPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-responsive-design-that-adapts-the-netflix-style-layout-for-mobile-tablet-and-desktop-screens",
-      "featureTitle": "Implement responsive design that adapts the Netflix-style layout for mobile, tablet, and desktop screens",
-      "files": [
-        "frontend/src/components/HeroSection.tsx",
-        "frontend/src/components/MovieRow.tsx",
-        "frontend/src/components/Navbar.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-a-cohesive-dark-theme-visual-design-inspired-by-netflix-s-aesthetic-including-color-palette-deep-blacks-reds-for-accents-typography-hierarchy-and-spacing-patterns",
-      "featureTitle": "Apply a cohesive dark theme visual design inspired by Netflix's aesthetic including color palette (deep blacks, reds for accents), typography hierarchy, and spacing patterns",
-      "files": [
-        "frontend/src/components/MovieCard.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-9"
+        "REQ-16"
       ],
       "confidence": "high"
     }

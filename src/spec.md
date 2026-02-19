@@ -1,16 +1,16 @@
 # Specification
 
 ## Summary
-**Goal:** Create a Netflix-style web application that allows users to browse and read movie recap scripts with a familiar streaming interface.
+**Goal:** Fix the blank black screen issue by adding proper initialization, loading states, and comprehensive error handling throughout the application.
 
 **Planned changes:**
-- Build a Netflix-inspired homepage with hero section, horizontal scrollable movie rows organized by categories, and top navigation bar
-- Implement movie detail pages that display full recap scripts with metadata
-- Add search functionality to filter movies by title with grid result layout
-- Create "My List" feature for saving movie recaps with persistent storage
-- Design responsive layout adapting to mobile, tablet, and desktop screens
-- Apply dark theme visual design with Netflix-style aesthetics (deep blacks, red accents, modern typography)
-- Build backend data model to store movie information, metadata, and recap scripts
-- Seed database with at least 20 sample movies across multiple genres with complete recap scripts
+- Add error boundary to root App component to catch and display rendering errors
+- Implement loading spinner during application initialization
+- Add skeleton UI placeholders to HomePage while movie data is being fetched
+- Ensure HomePage properly handles empty database state and displays movies immediately after seeding
+- Add comprehensive error handling to all React Query hooks with console logging and fallback empty states
+- Verify backend actor properly initializes stable storage and returns valid responses for getAllMovies and searchMovies
+- Add console logging to main.tsx and HomePage to track initialization flow and identify rendering failures
+- Ensure Internet Identity authentication initialization does not block homepage rendering
 
-**User-visible outcome:** Users can browse movie recaps in a Netflix-style interface, search for specific titles, read full recap scripts on detail pages, and save favorites to their personal list for later reading.
+**User-visible outcome:** Users will see loading indicators instead of a blank screen, with skeleton placeholders during data fetching. Error messages will display clearly if something goes wrong, and the homepage will show movie content immediately after the application loads, even before logging in.

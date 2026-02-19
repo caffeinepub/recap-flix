@@ -25,11 +25,11 @@ export const idlService = IDL.Service({
       [],
     ),
   'addToList' : IDL.Func([IDL.Text], [], []),
+  'getAllMovies' : IDL.Func([], [IDL.Vec(Movie)], ['query']),
   'getList' : IDL.Func([], [IDL.Vec(Movie)], ['query']),
   'getMovie' : IDL.Func([IDL.Text], [Movie], ['query']),
   'removeFromList' : IDL.Func([IDL.Text], [], []),
   'searchMovies' : IDL.Func([IDL.Text], [IDL.Vec(Movie)], ['query']),
-  'seedData' : IDL.Func([], [], []),
 });
 
 export const idlInitArgs = [];
@@ -52,11 +52,11 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'addToList' : IDL.Func([IDL.Text], [], []),
+    'getAllMovies' : IDL.Func([], [IDL.Vec(Movie)], ['query']),
     'getList' : IDL.Func([], [IDL.Vec(Movie)], ['query']),
     'getMovie' : IDL.Func([IDL.Text], [Movie], ['query']),
     'removeFromList' : IDL.Func([IDL.Text], [], []),
     'searchMovies' : IDL.Func([IDL.Text], [IDL.Vec(Movie)], ['query']),
-    'seedData' : IDL.Func([], [], []),
   });
 };
 

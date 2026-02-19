@@ -1,15 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
+  "projectStateVersion": 5,
   "summary": "Netflix-like web app that provides movie recap scripts instead of streaming videos. UI/UX should replicate Netflix's interface and flow exactly.",
   "architectural_notes": [
     "Frontend should closely mirror Netflix's visual design language and user experience patterns",
     "Movie data structure needs title, thumbnail, categories, and recap script content",
     "Consider row-based layout with horizontal scrolling like Netflix browse interface"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Dark cinematic hero background image for featured movie section (hero-bg.dim_1920x1080.png)\n- Logo icon for navigation bar with red accent (logo.dim_200x80.png)\n- Sample movie poster for action genre (poster-action-1.dim_300x450.png)\n- Sample movie poster for drama genre (poster-drama-1.dim_300x450.png)\n- Sample movie poster for comedy genre (poster-comedy-1.dim_300x450.png)\n- Sample movie poster for thriller genre (poster-thriller-1.dim_300x450.png)\n- Sample movie backdrop for detail page (backdrop-1.dim_1280x720.png)",
+  "known_issues": [
+    "Blank black screen on deployment - requires proper initialization and error boundaries",
+    "CSP (Content Security Policy) error causing 'disallowed origin' on Internet Computer deployment"
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-homepage-with-a-netflix-inspired-hero-section-featuring-a-prominent-movie-recap-with-title-description-and-call-to-action-button",
@@ -74,6 +76,46 @@
         "REQ-9"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-loading-states-and-error-boundaries-to-the-root-app-component-to-catch-and-display-rendering-errors-instead-of-showing-a-blank-screen",
+      "title": "Add loading states and error boundaries to the root App component to catch and display rendering errors instead of showing a blank screen",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-fallback-loading-states-to-homepage-component-that-display-a-skeleton-ui-while-movie-data-is-being-fetched-from-the-backend",
+      "title": "Add fallback loading states to HomePage component that display a skeleton UI while movie data is being fetched from the backend",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-homepage-component-properly-handles-the-case-when-no-movies-exist-by-displaying-the-hero-section-with-the-first-seeded-movie-immediately-after-seeding-completes",
+      "title": "Ensure the HomePage component properly handles the case when no movies exist by displaying the hero section with the first seeded movie immediately after seeding completes",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-comprehensive-error-handling-to-all-react-query-hooks-usequeries-ts-to-log-errors-to-console-and-provide-fallback-empty-states-instead-of-failing-silently",
+      "title": "Add comprehensive error handling to all React Query hooks (useQueries.ts) to log errors to console and provide fallback empty states instead of failing silently",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-console-logging-to-the-main-tsx-entry-point-and-homepage-component-to-track-application-initialization-flow-and-identify-where-rendering-might-be-failing",
+      "title": "Add console logging to the main.tsx entry point and HomePage component to track application initialization flow and identify where rendering might be failing",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -114,6 +156,22 @@
       "summary": "Seed the backend with sample movie data including titles, metadata, and recap scripts for at least 20 movies across multiple genres",
       "reqIds": [
         "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Verify the backend main.mo actor properly initializes with stable storage and returns valid responses for getAllMovies and searchMovies queries",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Ensure the Internet Identity authentication flow properly initializes and does not block rendering of public movie content on the homepage",
+      "reqIds": [
+        "REQ-17"
       ],
       "status": "pending"
     }

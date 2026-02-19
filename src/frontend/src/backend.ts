@@ -101,11 +101,11 @@ export interface Movie {
 export interface backendInterface {
     addMovie(title: string, genre: string, year: bigint, duration: bigint, posterUrl: string, backdropUrl: string, recapScript: string): Promise<void>;
     addToList(movieTitle: string): Promise<void>;
+    getAllMovies(): Promise<Array<Movie>>;
     getList(): Promise<Array<Movie>>;
     getMovie(title: string): Promise<Movie>;
     removeFromList(movieTitle: string): Promise<void>;
     searchMovies(searchText: string): Promise<Array<Movie>>;
-    seedData(): Promise<void>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
@@ -134,6 +134,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addToList(arg0);
+            return result;
+        }
+    }
+    async getAllMovies(): Promise<Array<Movie>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllMovies();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllMovies();
             return result;
         }
     }
@@ -190,20 +204,6 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.searchMovies(arg0);
-            return result;
-        }
-    }
-    async seedData(): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.seedData();
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.seedData();
             return result;
         }
     }

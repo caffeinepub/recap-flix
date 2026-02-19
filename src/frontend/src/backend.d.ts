@@ -19,9 +19,9 @@ export interface Movie {
 export interface backendInterface {
     addMovie(title: string, genre: string, year: bigint, duration: bigint, posterUrl: string, backdropUrl: string, recapScript: string): Promise<void>;
     addToList(movieTitle: string): Promise<void>;
+    getAllMovies(): Promise<Array<Movie>>;
     getList(): Promise<Array<Movie>>;
     getMovie(title: string): Promise<Movie>;
     removeFromList(movieTitle: string): Promise<void>;
     searchMovies(searchText: string): Promise<Array<Movie>>;
-    seedData(): Promise<void>;
 }

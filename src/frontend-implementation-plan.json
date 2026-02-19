@@ -1,213 +1,127 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Netflix-style Movie Recap Viewer Frontend",
+  "title": "Fix blank black screen with proper initialization and error handling",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Create homepage with Netflix-inspired hero section featuring a prominent movie recap",
+      "id": "REQ-11",
+      "summary": "Add loading states and error boundaries to the root App component to catch and display rendering errors",
       "acceptanceCriteria": [
-        "Hero section displays a featured movie recap with large background image",
-        "Title and description overlay on hero image",
-        "Primary CTA button (e.g., 'Read Recap') is prominently displayed",
-        "Visual styling matches Netflix's dark theme and layout proportions"
+        "App component wraps all routes with an error boundary that displays error messages",
+        "Loading spinner displays while the application initializes",
+        "Error boundary catches JavaScript errors and shows user-friendly error message instead of blank screen"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/HeroSection.tsx",
+          "path": "frontend/src/components/ErrorBoundary.tsx",
           "operation": "create",
-          "description": "Create hero section component with featured movie backdrop using generated image at frontend/public/assets/generated/hero-bg.dim_1920x1080.png, title/description overlay, and 'Read Recap' CTA button. Component fetches a featured movie from backend and displays it prominently with Netflix-style dark overlay gradient."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Implement horizontal scrollable rows of movie cards organized by categories",
-      "acceptanceCriteria": [
-        "Multiple category rows displayed vertically on homepage",
-        "Each row contains horizontally scrollable movie cards",
-        "Cards show movie poster thumbnail and title",
-        "Smooth horizontal scroll interaction",
-        "Hover effects on cards (scale up, show additional info)"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/MovieRow.tsx",
-          "operation": "create",
-          "description": "Create category row component that displays a horizontal scrollable list of movie cards with category title. Implements smooth scroll behavior and uses generated poster images (poster-action-1.dim_300x450.png, poster-drama-1.dim_300x450.png, poster-comedy-1.dim_300x450.png, poster-thriller-1.dim_300x450.png) for sample movies. Fetches movies by category from backend using searchMovies method."
-        },
-        {
-          "path": "frontend/src/components/MovieCard.tsx",
-          "operation": "create",
-          "description": "Create movie card component with poster thumbnail, title overlay, and hover scale-up effect. On click, navigates to detail page. Displays add-to-list button on hover. Uses posterUrl from Movie interface to display images."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Create top navigation bar with logo, browse menu, search icon, and user profile section",
-      "acceptanceCriteria": [
-        "Fixed navigation bar at top of page",
-        "Logo/brand name on the left",
-        "Navigation links (Home, Categories, My List) in center",
-        "Search and profile icons on the right",
-        "Background transitions from transparent to solid on scroll",
-        "Navigation remains visible and accessible at all times"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Navbar.tsx",
-          "operation": "create",
-          "description": "Create fixed navigation bar component with logo image at frontend/public/assets/generated/logo.dim_200x80.png on left, navigation links (Home, Categories, My List) in center, and search/profile icons on right. Implements scroll listener to transition background from transparent to solid black. Includes mobile hamburger menu collapse."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Build movie detail page that displays full recap script with movie metadata",
-      "acceptanceCriteria": [
-        "Detail page shows movie title, year, genre, and estimated reading time",
-        "Full recap script displayed in readable typography",
-        "Background features movie poster or backdrop image",
-        "Back navigation to return to browse view",
-        "Recap text is formatted with proper paragraphs and spacing"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/MovieDetailPage.tsx",
-          "operation": "create",
-          "description": "Create movie detail page that fetches movie data using getMovie backend method based on route parameter. Displays backdrop image (e.g., backdrop-1.dim_1280x720.png for sample movie), movie metadata (title, year, genre, duration), and full recap script with readable typography. Includes back button to return to browse view and add-to-list button."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Implement search functionality that filters movies by title in grid layout",
-      "acceptanceCriteria": [
-        "Search input in navigation bar",
-        "Real-time filtering as user types",
-        "Results displayed in grid layout",
-        "Each result shows movie poster and title",
-        "Clicking result navigates to detail page",
-        "Empty state when no results found"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/SearchModal.tsx",
-          "operation": "create",
-          "description": "Create search modal component that opens from navigation bar search icon. Implements real-time search using searchMovies backend method as user types. Displays results in grid layout with movie posters and titles. Includes empty state message when no results found."
-        },
-        {
-          "path": "frontend/src/components/Navbar.tsx",
-          "operation": "modify",
-          "description": "Add search icon button that opens SearchModal component. Wire modal state management and toggle functionality."
-        }
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "summary": "Add 'My List' feature allowing users to save movie recaps with persistent storage",
-      "acceptanceCriteria": [
-        "Add/remove button on movie cards and detail pages",
-        "My List page displays all saved movies",
-        "List persists across sessions",
-        "Visual indicator shows when movie is in list",
-        "List accessible from navigation menu"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/MyListPage.tsx",
-          "operation": "create",
-          "description": "Create My List page that fetches user's saved movies using getList backend method. Displays movies in grid layout similar to search results. Each card includes remove button that calls removeFromList backend method."
-        },
-        {
-          "path": "frontend/src/hooks/useMyList.ts",
-          "operation": "create",
-          "description": "Create custom hook for managing My List state. Provides methods to check if movie is in list, add movie (calls addToList backend method), remove movie (calls removeFromList backend method), and fetch list (calls getList backend method). Manages loading and error states."
-        },
-        {
-          "path": "frontend/src/components/MovieCard.tsx",
-          "operation": "modify",
-          "description": "Add add-to-list button that appears on hover. Use useMyList hook to check if movie is in list, show visual indicator, and handle add/remove actions."
-        },
-        {
-          "path": "frontend/src/pages/MovieDetailPage.tsx",
-          "operation": "modify",
-          "description": "Add add-to-list button to detail page using useMyList hook. Show visual indicator when movie is already in list."
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Implement responsive design adapting Netflix-style layout for all screen sizes",
-      "acceptanceCriteria": [
-        "Movie card rows adapt number of visible items based on screen width",
-        "Navigation collapses to hamburger menu on mobile",
-        "Hero section scales appropriately on all devices",
-        "Touch-friendly interactions on mobile devices",
-        "Maintains Netflix-style aesthetics across all breakpoints"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/MovieRow.tsx",
-          "operation": "modify",
-          "description": "Add responsive grid/flex layout using Tailwind breakpoints to show different numbers of cards per row (2 on mobile, 3 on tablet, 4-6 on desktop). Ensure horizontal scroll works smoothly on touch devices."
-        },
-        {
-          "path": "frontend/src/components/Navbar.tsx",
-          "operation": "modify",
-          "description": "Implement hamburger menu for mobile screens using Tailwind responsive utilities. Add mobile menu drawer that slides in from side with navigation links."
-        },
-        {
-          "path": "frontend/src/components/HeroSection.tsx",
-          "operation": "modify",
-          "description": "Add responsive layout adjustments using Tailwind breakpoints. Scale hero text size, button size, and image height appropriately for mobile, tablet, and desktop screens."
-        }
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "summary": "Apply cohesive dark theme visual design inspired by Netflix aesthetic",
-      "acceptanceCriteria": [
-        "Dark background (near-black) as primary color",
-        "Red accent color for primary actions and branding",
-        "Clean, modern sans-serif typography",
-        "Consistent spacing and padding throughout",
-        "Subtle shadows and depth effects on cards",
-        "Smooth transitions and animations"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Define Netflix-inspired dark theme color palette in CSS custom properties: near-black background (#141414), dark gray surfaces (#181818), red accent (#e50914). Set base typography to sans-serif font family. Apply dark background to body element."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Extend Tailwind theme with Netflix color palette (netflix-black, netflix-red, netflix-gray variations). Configure custom spacing scale for consistent padding/margins. Add custom shadow utilities for card depth effects."
-        },
-        {
-          "path": "frontend/src/components/MovieCard.tsx",
-          "operation": "modify",
-          "description": "Apply subtle shadow, smooth hover scale transition, and consistent border radius. Use Netflix theme colors from Tailwind config."
-        }
-      ]
-    },
-    {
-      "id": "REQ-1",
-      "summary": "Wire hero section and movie rows into main application",
-      "acceptanceCriteria": [],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "create",
-          "description": "Create homepage that composes Navbar, HeroSection, and multiple MovieRow components for different categories (Trending Recaps, Action Movies, Drama, Comedy, Thriller). Fetches initial data and passes to child components."
+          "description": "Create an error boundary component that catches JavaScript errors in child components and displays a user-friendly error message with a reload button. Include console logging for caught errors with stack traces."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Set up React Router with routes for HomePage (/), MovieDetailPage (/movie/:title), and MyListPage (/my-list). Wrap application with router and ensure dark theme is applied globally."
+          "description": "Wrap the RouterProvider with the ErrorBoundary component to catch rendering errors. Add a loading state that displays while the router initializes, showing a centered spinner on the dark background."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add fallback loading states to HomePage component with skeleton UI while movie data is being fetched",
+      "acceptanceCriteria": [
+        "HomePage shows skeleton placeholders for hero section and movie rows while data loads",
+        "Loading state is visible immediately on page load",
+        "Skeleton UI matches the Netflix-style layout structure"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HeroSkeleton.tsx",
+          "operation": "create",
+          "description": "Create a skeleton loading component for the hero section that displays a gray animated placeholder matching the hero section dimensions with gradient overlays and skeleton text blocks."
+        },
+        {
+          "path": "frontend/src/components/MovieRowSkeleton.tsx",
+          "operation": "create",
+          "description": "Create a skeleton loading component for movie rows that displays animated placeholder cards in a horizontal layout matching the MovieRow component structure."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add loading state checks for the getAllMovies and seedMovies queries. Display HeroSkeleton and multiple MovieRowSkeleton components while isLoading is true. Ensure loading states are checked before rendering actual content."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Ensure the HomePage component properly handles empty database by displaying movies immediately after seeding completes",
+      "acceptanceCriteria": [
+        "When database is empty, seed operation completes and movies are immediately fetched and displayed",
+        "No blank screen appears between seeding and displaying movies",
+        "Hero section displays the first movie from the seeded data"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Update the useEffect that triggers seeding to properly refetch getAllMovies after seeding completes. Ensure the seed mutation's onSuccess callback triggers a query refetch. Add console logging to track the seeding flow and movie fetch after seeding."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Add comprehensive error handling to all React Query hooks to log errors and provide fallback empty states",
+      "acceptanceCriteria": [
+        "All query hooks include onError callbacks that log to console",
+        "Failed queries return empty arrays or null values instead of throwing errors",
+        "Error states are properly exposed to consuming components"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add onError callbacks to all useQuery and useMutation hooks that log detailed error information to console. Ensure queries return empty arrays ([]) for list queries and null for single item queries when errors occur. Add error property to the returned hook objects so consuming components can access error states."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Add console logging to main.tsx entry point and HomePage component to track application initialization flow",
+      "acceptanceCriteria": [
+        "Console logs confirm React app mounts successfully",
+        "Console logs show when HomePage component renders",
+        "Console logs track seed operation start and completion",
+        "Console logs display any caught errors with stack traces"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Add console log statements before and after ReactDOM.createRoot to confirm the entry point executes. Log when the React app successfully mounts. Wrap the render call in a try-catch block that logs any errors with stack traces."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add console logs at the start of the component function to confirm HomePage renders. Log the loading and error states of getAllMovies query. Log when seed operation starts, completes successfully, or fails. Add timestamp to all logs for debugging the initialization sequence."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Ensure Internet Identity authentication initialization does not block rendering of public movie content",
+      "acceptanceCriteria": [
+        "Homepage displays movie content before user logs in",
+        "Authentication initialization does not prevent app from rendering",
+        "useInternetIdentity hook handles initialization errors gracefully without breaking the app"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Ensure the useActor hook returns a valid actor instance even when authentication is not initialized or fails. Add error handling for actor creation that logs errors but does not throw. Allow queries to proceed with an unauthenticated actor for public read operations."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Wrap the InternetIdentityProvider in an error boundary or add error handling to ensure authentication initialization failures do not prevent the app from rendering. Add console logging for authentication initialization status."
         }
       ]
     }

@@ -1,12 +1,12 @@
 import Map "mo:core/Map";
 import List "mo:core/List";
-import Iter "mo:core/Iter";
 import Text "mo:core/Text";
-import Set "mo:core/Set";
-import Array "mo:core/Array";
+import Iter "mo:core/Iter";
 import Runtime "mo:core/Runtime";
 import Principal "mo:core/Principal";
+import Migration "migration";
 
+(with migration = Migration.run)
 actor {
   type Movie = {
     title : Text;
@@ -19,7 +19,7 @@ actor {
   };
 
   let movies = Map.empty<Text, Movie>();
-  let userLists = Map.empty<Principal, Set.Set<Text>>();
+  let userLists = Map.empty<Principal, List.List<Text>>();
 
   public shared ({ caller }) func addMovie(
     title : Text,
@@ -51,10 +51,14 @@ actor {
     };
   };
 
+  public query ({ caller }) func getAllMovies() : async [Movie] {
+    movies.values().toArray();
+  };
+
   public query ({ caller }) func searchMovies(searchText : Text) : async [Movie] {
     movies.values().toArray().filter(
       func(movie) {
-        movie.title.contains(#text searchText);
+        movie.title.contains(#text searchText) or movie.genre.contains(#text searchText);
       }
     );
   };
@@ -65,7 +69,7 @@ actor {
     };
 
     let currentList = switch (userLists.get(caller)) {
-      case (null) { Set.empty<Text>() };
+      case (null) { List.empty<Text>() };
       case (?list) { list };
     };
 
@@ -75,12 +79,16 @@ actor {
 
   public shared ({ caller }) func removeFromList(movieTitle : Text) : async () {
     let currentList = switch (userLists.get(caller)) {
-      case (null) { Set.empty<Text>() };
+      case (null) { List.empty<Text>() };
       case (?list) { list };
     };
 
-    currentList.remove(movieTitle);
-    userLists.add(caller, currentList);
+    let filteredList = currentList.filter(
+      func(title) {
+        title != movieTitle;
+      }
+    );
+    userLists.add(caller, filteredList);
   };
 
   public query ({ caller }) func getList() : async [Movie] {
@@ -99,7 +107,7 @@ actor {
     };
   };
 
-  public shared ({ caller }) func seedData() : async () {
+  system func preupgrade() {
     let sampleMovies : [Movie] = [
       {
         title = "Inception";
