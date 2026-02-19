@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Netflix-like web app that provides movie recap scripts instead of streaming videos. UI/UX should replicate Netflix's interface and flow exactly.",
+  "architectural_notes": [
+    "Frontend should closely mirror Netflix's visual design language and user experience patterns",
+    "Movie data structure needs title, thumbnail, categories, and recap script content",
+    "Consider row-based layout with horizontal scrolling like Netflix browse interface"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Dark cinematic hero background image for featured movie section (hero-bg.dim_1920x1080.png)\n- Logo icon for navigation bar with red accent (logo.dim_200x80.png)\n- Sample movie poster for action genre (poster-action-1.dim_300x450.png)\n- Sample movie poster for drama genre (poster-drama-1.dim_300x450.png)\n- Sample movie poster for comedy genre (poster-comedy-1.dim_300x450.png)\n- Sample movie poster for thriller genre (poster-thriller-1.dim_300x450.png)\n- Sample movie backdrop for detail page (backdrop-1.dim_1280x720.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-homepage-with-a-netflix-inspired-hero-section-featuring-a-prominent-movie-recap-with-title-description-and-call-to-action-button",
+      "title": "Create a homepage with a Netflix-inspired hero section featuring a prominent movie recap with title, description, and call-to-action button",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-horizontal-scrollable-rows-of-movie-cards-organized-by-categories-e-g-trending-recaps-action-movies-drama-comedy",
+      "title": "Implement horizontal scrollable rows of movie cards organized by categories (e.g., 'Trending Recaps', 'Action Movies', 'Drama', 'Comedy')",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-top-navigation-bar-with-logo-browse-menu-search-icon-and-user-profile-section-matching-netflix-s-navigation-design",
+      "title": "Create a top navigation bar with logo, browse menu, search icon, and user profile section matching Netflix's navigation design",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-movie-detail-page-that-displays-the-full-recap-script-in-a-readable-format-with-movie-metadata-title-genre-year-duration",
+      "title": "Build a movie detail page that displays the full recap script in a readable format with movie metadata (title, genre, year, duration)",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-search-functionality-that-filters-movies-by-title-and-displays-results-in-a-grid-layout-similar-to-netflix-search-results",
+      "title": "Implement search functionality that filters movies by title and displays results in a grid layout similar to Netflix search results",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-my-list-feature-allowing-users-to-save-movie-recaps-for-later-reading-with-persistent-storage",
+      "title": "Add a 'My List' feature allowing users to save movie recaps for later reading with persistent storage",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-responsive-design-that-adapts-the-netflix-style-layout-for-mobile-tablet-and-desktop-screens",
+      "title": "Implement responsive design that adapts the Netflix-style layout for mobile, tablet, and desktop screens",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-dark-theme-visual-design-inspired-by-netflix-s-aesthetic-including-color-palette-deep-blacks-reds-for-accents-typography-hierarchy-and-spacing-patterns",
+      "title": "Apply a cohesive dark theme visual design inspired by Netflix's aesthetic including color palette (deep blacks, reds for accents), typography hierarchy, and spacing patterns",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Netflix-style homepage with browse interface",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Movie detail pages showing recap scripts",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Netflix-inspired navigation and categorization",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Responsive design matching Netflix UI/UX patterns",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Create a backend data model to store movie information including title, genre, year, poster image URL, backdrop image URL, and recap script text",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Seed the backend with sample movie data including titles, metadata, and recap scripts for at least 20 movies across multiple genres",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Recap Flix",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
